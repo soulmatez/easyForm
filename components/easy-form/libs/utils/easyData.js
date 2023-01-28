@@ -249,7 +249,6 @@ export const elCodingExcelNodeText = [{
         disabled: true,
         watch: true,
         toFixNum: 3,
-        isPercent: true,
         watchEch: ['numA', 'numB'],
         regExp: 'numA/(numA+numB)',
         textLines: 1,
@@ -275,8 +274,9 @@ export const elCodingExcelNodeText = [{
         type: 'input',
         disabled: true,
         watch: true,
+        isPercent: true,
         watchEch: ['numD', 'numE'],
-        regExp: '(numE-numD)/numD*100%',
+        regExp: '(numE-numD)/numD',
         textLines: 1,
         textLineHeight: 30,
         tip: '计算公式为：(numE-numD)/numD*100%'

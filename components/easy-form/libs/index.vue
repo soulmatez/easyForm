@@ -37,7 +37,7 @@
                 size="18"
                 style="margin-right: 5px"
               ></u-icon>
-              <u--text :lineHeight="item.textLineHeight" :lines="item.textLines" :text="item.tip" line-he></u--text>
+              <u--text :lineHeight="item.textLineHeight" :lines="item.textLines" :text="item.tip"></u--text>
             </view>
           </u-form-item>
           <!-- 日期选择器 -->
@@ -113,11 +113,11 @@
           </u-form-item>
           <!-- 按钮组 -->
             <u-button
-            v-else-if="item.type == 'button'"
+            v-else-if="item.type == 'button' && item.isUsed"
             :disabled="item.disabled"
             :color="item.buttonColor"
             :text="item.name"
-            @click="submitButtonEvent(item.event)"
+            @click="submitButtonEvent(item.event, item.key)"
             ></u-button>
         </block>
       </u--form>
@@ -228,7 +228,6 @@
             >
             </u--input>
           </u-form-item>
-
           <u-button
             color="#4393ff"
             text="提交申请"
@@ -285,26 +284,8 @@ export default {
     };
   },
   created(){
-    let rules = {};
-    let form = {};
-    console.log(this.elCodingExcelNodeText, 'this.elCodingExcelNodeText')
-    this.elCodingExcelNodeText.data.forEach((item, index) => {
-      if (item.isUsed) {
-        // 初始化表单校验
-        this.$set(rules, item.key, [
-          {
-            required: true,
-            message: `请选择${item.name}`,
-            trigger: ["blur"],
-          },
-        ]);
-        // 初始化表单
-        this.$set(form, item.key, item.value);
-      }
-    });
-    Object.assign(this.addOrderWorkForm, { ...form });
-    Object.assign(this.rules, { ...rules });
-
+    // 初始化组件
+    this.initComponent()
     // 设置页面标题
     uni.setNavigationBarTitle({
       title: this.elCodingExcelNodeText.title
@@ -324,6 +305,27 @@ export default {
   onReady() {},
   onShow() {},
   methods: {
+    initComponent(){
+      let rules = {};
+      let form = {};
+      this.elCodingExcelNodeText.data.forEach((item, index) => {
+        if (item.isUsed) {
+          // 初始化表单校验
+          this.$set(rules, item.key, [
+            {
+              required: true,
+              message: `请选择${item.name}`,
+              trigger: ['blur', 'change'],
+            },
+          ]);
+          // 初始化表单
+          this.$set(form, item.key, item.value);
+          this.$set(this.addOrderWorkForm, item.key, item.value);
+        }
+      });
+      // Object.assign(this.addOrderWorkForm, { ...form });
+      Object.assign(this.rules, { ...rules });
+    },
     /**
 	 * 设置action选择框的显隐状态
 	 * parmas: {
@@ -419,13 +421,28 @@ export default {
     /** 
      * 自定义
     */
-    submitButtonEvent(e){
+    submitButtonEvent(e, type){
         let eventObj = {};
         Object.assign(eventObj, {
           eventType: e,
           data: this.addOrderWorkForm
         })
-        this.$emit('elEvent', eventObj)
+        if(type == 'sumbit'){
+          this.$refs['addOrderWorkForm'].validate().then(valid => {
+            this.$emit('elEvent', eventObj)
+          }).catch(err => {
+            console.log(err)
+            this.$refs.uToast.show({
+              message: err[0].message,
+              type: 'error'
+            })
+          })
+        }else if(type == 'cancle'){
+          this.$refs['addOrderWorkForm'].resetFields();
+          this.$refs['addOrderWorkForm'].clearValidate()
+          this.$emit('elEvent', eventObj)
+        }
+        
     },
     reloadon() {
       // 页面重载
@@ -455,8 +472,8 @@ export default {
       // 判断是否进行保留小数
       if(item.toFixNum > 0){
         str = parseFloat(eval(str)).toFixed(item.toFixNum);
-      }else if(item.toFixNum == 0){
-        str = parseInt(eval(str));
+      }else if(item.toFixNum == 0 || item.toFixNum == undefined){
+        str = eval(str) > 1 ? parseInt(eval(str)) : eval(str);
       }
       // 判断是否为百分数
       if(item.isPercent == true){
@@ -475,83 +492,22 @@ export default {
           return item.watch == true && item.isUsed;
         });
         items.forEach((item, index) => {
-          console.log(this.addOrderWorkForm[item.watchEch[0]] == "", "111");
-          console.log(this.addOrderWorkForm[item.watchEch[1]] == "", "222");
-          if (
-            this.addOrderWorkForm[item.watchEch[0]] != "" &&
-            this.addOrderWorkForm[item.watchEch[1]] != ""
-          ) {
+          let isWatch = [];
+          isWatch = item.watchEch.filter(item => {
+            return this.addOrderWorkForm[item] == '' || this.addOrderWorkForm[item] == null || this.addOrderWorkForm[item] == undefined;
+          })
+          if (isWatch.length == 0) {
             let regExp = this.changepoints(item);
             this.addOrderWorkForm[item["key"]] = regExp;
           }
         });
       },
-    },
-    elCodingExcelNodeText: {
-        deep: true, //true为进行深度监听,false为不进行深度监听
-        handler(newVal) {
-            console.log(newVal)
-        },
     }
   },
 };
 </script>
 
 <style lang="scss" scope>
-.pageContent {
-  &.pageOverFlow {
-    height: 100%;
-  }
-
-  .boundWorkOrder {
-    padding: 0rpx 10rpx;
-
-    .groups {
-      width: 100%;
-      margin: 10rpx 0px;
-
-      .u-radio {
-        margin-right: 50rpx;
-      }
-    }
-
-    /deep/ .u-button {
-      margin-bottom: 20rpx;
-    }
-
-    /deep/ .u-form-item {
-      &.tip {
-        .u-input {
-          width: 100%;
-        }
-
-        .u-form-item__body__right__content__slot {
-          flex-wrap: wrap;
-          justify-content: start;
-        }
-
-        .tipText {
-          width: 100%;
-          height: 20px;
-          padding: 0px;
-          line-height: 20px;
-          display: flex;
-          margin: 7px 0px;
-          box-sizing: border-box;
-        }
-      }
-    }
-  }
-
-  .popTitle {
-    width: 100%;
-    background: #4393ff;
-  }
-
-  .applyForm {
-    width: 100%;
-    padding: 20rpx 20rpx;
-    box-sizing: border-box;
-  }
-}
+  // 引入组件样式文件
+  @import "./assets/style.scss";
 </style>

@@ -1,0 +1,56 @@
+.pageContent {
+    &.pageOverFlow {
+      height: 100%;
+    }
+  
+    .boundWorkOrder {
+      padding: 0rpx 10rpx;
+  
+      .groups {
+        width: 100%;
+        margin: 10rpx 0px;
+  
+        .u-radio {
+          margin-right: 50rpx;
+        }
+      }
+  
+      /deep/ .u-button {
+        margin-bottom: 20rpx;
+      }
+  
+      /deep/ .u-form-item {
+        &.tip {
+          .u-input {
+            width: 100%;
+          }
+  
+          .u-form-item__body__right__content__slot {
+            flex-wrap: wrap;
+            justify-content: start;
+          }
+  
+          .tipText {
+            width: 100%;
+            height: 20px;
+            padding: 0px;
+            line-height: 20px;
+            display: flex;
+            margin: 7px 0px;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
+  
+    .popTitle {
+      width: 100%;
+      background: #4393ff;
+    }
+  
+    .applyForm {
+      width: 100%;
+      padding: 20rpx 20rpx;
+      box-sizing: border-box;
+    }
+  }

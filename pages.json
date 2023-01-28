@@ -13,7 +13,7 @@
 	"subPackages": [{
 		"root": "components",
 		"pages": [{
-			"path": "easy-form/index",
+			"path": "easy-form/libs/index",
 			"name": "easyForm",
 			"style": {
 				"navigationBarTitleText": "easyForm"

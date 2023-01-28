@@ -1,7 +1,7 @@
 <!--
  * @Author: Soulmate
  * @Date: 2023-01-18 13:42:08
- * @LastEditTime: 2023-01-19 15:06:10
+ * @LastEditTime: 2023-01-28 09:55:41
  * @LastEditors: Soulmate
  * @Description: 
  * @FilePath: \easyForm\easy-form-v2\pages\index\index.vue
@@ -9,19 +9,20 @@
 -->
 <template>
 	<view class="content">
-		<easyForm :elCodingExcelNodeText="elCodingExcelNodeText"
+		<easyForm ref="easyForm"
+				  :elCodingExcelNodeText="elCodingExcelNodeText"
 			 	  :elPropArray="elPropArray"
 				  @elEvent="elEvent"></easyForm>
 	</view>
 </template>
 
 <script>
-	import easyForm from '../../components/easy-form/index.vue'
+	import easyForm from '../../components/easy-form/libs/index.vue'
 	import {
 	elCoding,
 	elTypeList,
 	elCodingExcelNodeText,
-	} from "../../components/easy-form/utils/easyData.js";
+	} from "../../components/easy-form/libs/utils/easyData.js";
 	export default {
 		data() {
 			return {
@@ -50,6 +51,13 @@
 		methods: {
 			elEvent(eventObj){
 				console.log(`你触发了${eventObj.eventType}事件`)
+				if(eventObj.eventType == 'sumbitApply'){
+					
+				}
+				if(eventObj.eventType == 'cancelFunc'){
+					this.$refs['easyForm'].initComponent()  // 初始化子组件  固定方法
+				}
+				
 			}
 		}
 	}
