@@ -181,6 +181,8 @@ export const elCodingFormAudit = [{
  *         key： 表单属性值
  *         value： 备注
  *         isUsed: 是否启用该字段 （不填写为不启用）
+ *         isValiate: 是否进行校验
+ *         valiateRule: 校验规则
  *         type: 组件类型 （默认input） / text：输入框  selectPicker：选择框  datePicker：时间选择框     /
  *         numType: 值类型
  *         toFixNum: 保留几位小数
@@ -206,12 +208,16 @@ export const elCodingExcelNodeText = [{
         key: 'name',
         value: '',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'input'
     },{
         name: '性别',
         key: 'sex',
         value: '',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'selectPicker',
         checkSelectValue: 'sexListAction',
     },{
@@ -219,12 +225,16 @@ export const elCodingExcelNodeText = [{
         key: 'authenticationTime',
         value: '',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'dateTimePicker'
     },{
         name: '日期选择器',
         key: 'nextAuthenticationTime',
         value: '',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'datePicker'
     },{
         name: '计算因子A',
@@ -232,6 +242,8 @@ export const elCodingExcelNodeText = [{
         value: '',
         isUsed: true,
         type: 'input',
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         numType: 'number',
     },{
         name: '计算因子B',
@@ -239,12 +251,16 @@ export const elCodingExcelNodeText = [{
         value: '',
         isUsed: true,
         type: 'input',
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         numType: 'number',
     },{
         name: '结果(C)',
         key: 'numC',
         value: '',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'input',
         disabled: true,
         watch: true,
@@ -258,12 +274,16 @@ export const elCodingExcelNodeText = [{
         name: '计算因子D',
         key: 'numD',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'input',
         value: ''
     },{
         name: '计算因子E',
         key: 'numE',
         isUsed: true,
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         type: 'input',
         value: ''
     },{
@@ -272,6 +292,8 @@ export const elCodingExcelNodeText = [{
         value: '',
         isUsed: true,
         type: 'input',
+        isValiate: true,
+        valiateRule: ['blur', 'change'],
         disabled: true,
         watch: true,
         isPercent: true,

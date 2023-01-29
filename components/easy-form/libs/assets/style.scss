@@ -14,7 +14,15 @@
           margin-right: 50rpx;
         }
       }
-  
+      
+      /deep/ .u-form-item__body__left__content__label{
+        padding-left: 15px !important;
+      }
+
+      /deep/ .u-form-item__body__left__content__required{
+        left: 0px !important;
+      }
+
       /deep/ .u-button {
         margin-bottom: 20rpx;
       }
@@ -29,7 +37,7 @@
             flex-wrap: wrap;
             justify-content: start;
           }
-  
+          
           .tipText {
             width: 100%;
             height: 20px;

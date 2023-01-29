@@ -18,6 +18,7 @@
             :label="`${item.name}:`"
             :prop="item.key"
             :ref="item.key"
+            :required="item.isValiate"
           >
             <u--input
               clearable
@@ -50,6 +51,7 @@
             :label="`${item.name}:`"
             :prop="item.key"
             :ref="item.key"
+            :required="item.isValiate"
           >
             <u--input
               :readonly="true"
@@ -72,6 +74,7 @@
             :label="`${item.name}:`"
             :prop="item.key"
             :ref="item.key"
+            :required="item.isValiate"
           >
             <u--input
               :readonly="true"
@@ -99,6 +102,7 @@
             :label="`${item.name}:`"
             :prop="item.key"
             :ref="item.key"
+            :required="item.isValiate"
           >
             <u--input
               :readonly="true"
@@ -241,11 +245,6 @@
 </template>
 <script>
 import mixinStyle from "./utils/easyFormStyleJson.js";
-import {
-  elCoding,
-  elTypeList,
-  elCodingExcelNodeText,
-} from "./utils/easyData.js";
 export default {
   name: "easyForm",
   components: {},
@@ -309,13 +308,13 @@ export default {
       let rules = {};
       let form = {};
       this.elCodingExcelNodeText.data.forEach((item, index) => {
-        if (item.isUsed) {
+        if (item.isValiate) {
           // 初始化表单校验
           this.$set(rules, item.key, [
             {
               required: true,
               message: `请选择${item.name}`,
-              trigger: ['blur', 'change'],
+              trigger: item.valiateRule,
             },
           ]);
           // 初始化表单

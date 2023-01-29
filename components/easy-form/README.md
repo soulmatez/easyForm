@@ -1,7 +1,7 @@
 <!--
  * @Author: Soulmate
  * @Date: 2023-01-28 08:49:31
- * @LastEditTime: 2023-01-28 16:54:49
+ * @LastEditTime: 2023-01-29 10:07:19
  * @LastEditors: Soulmate
  * @Description: 
  * @FilePath: \easyForm\easy-form-v2\components\easy-form\README.md
@@ -80,7 +80,7 @@ data: {
 }
 ...
 method: {
-    elEvent: function(){
+    elEvent: function(eventObj){
         return 'easyForm is easy!'
     }
 }
@@ -100,9 +100,17 @@ method: {
 ```
 - 属性说明
 ```
-elCodingExcelNodeText：页面排版json
+elCodingExcelNodeText：页面排版json(可从接口获取)
 elPropArray：下拉框自定义数据组(里面的属性需要跟json数据保持一致)
 elEvent：组件方法
+    {
+        eventObj: {
+            ...
+            eventType: json按钮类型，可以根据这个参数进行拓展逻辑
+            ...
+        }
+    }
+
 ```
 
 - Json数据配置

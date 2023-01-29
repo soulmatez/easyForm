@@ -1,6 +1,6 @@
 {
   "name": "esayform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "以uView为UI框架，使用JSON数据搭建表单页面，实现零代码插入自己想要的业务场景，帮助开发者专注于数据逻辑层和业务层",
   "main": "index.js",
   "scripts": {
