@@ -1,10 +1,10 @@
 <!--
  * @Author: Soulmate
  * @Date: 2023-01-28 08:49:31
- * @LastEditTime: 2023-01-28 16:54:49
+ * @LastEditTime: 2023-01-30 13:37:23
  * @LastEditors: Soulmate
  * @Description: 
- * @FilePath: \easyForm\easy-form-v2\components\easy-form\README.md
+ * @FilePath: \easyForm\easy-form-v2\README.md
  * 版权声明
 -->
 # easyForm
@@ -20,7 +20,7 @@ easyform
 │    ├── assets                            # 样式目录
 │    │     └── style.scss                  # 组件样式
 │    ├── utils                             # 杂项
-│    │     ├── esayData.js                 # 组件模拟数据demo
+│    │     ├── easyData.js                 # 组件模拟数据demo
 │    │     └── easyFormStyleJson.js        # 组件公共Mixin数据
 │    └── index.vue                         # 组件
 ├── index.js                               # 入口文件

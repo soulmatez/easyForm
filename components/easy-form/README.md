@@ -1,7 +1,7 @@
 <!--
  * @Author: Soulmate
  * @Date: 2023-01-28 08:49:31
- * @LastEditTime: 2023-01-29 10:07:19
+ * @LastEditTime: 2023-01-30 15:00:33
  * @LastEditors: Soulmate
  * @Description: 
  * @FilePath: \easyForm\easy-form-v2\components\easy-form\README.md
@@ -111,6 +111,10 @@ elEvent：组件方法
         }
     }
 
+```
+- package.json依赖说明
+```
+rollup-plugin-vue  ^5 对应的是v2
 ```
 
 - Json数据配置

@@ -507,6 +507,5 @@ export default {
 </script>
 
 <style lang="scss" scope>
-  // 引入组件样式文件
   @import "./assets/style.scss";
 </style>

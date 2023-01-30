@@ -1,0 +1,11 @@
+node_modules
+unpackage
+dist
+.hbuilderx
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

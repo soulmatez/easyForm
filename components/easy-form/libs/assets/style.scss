@@ -15,19 +15,19 @@
         }
       }
       
-      /deep/ .u-form-item__body__left__content__label{
+      ::v-deep .u-form-item__body__left__content__label{
         padding-left: 15px !important;
       }
 
-      /deep/ .u-form-item__body__left__content__required{
+      ::v-deep .u-form-item__body__left__content__required{
         left: 0px !important;
       }
 
-      /deep/ .u-button {
+      ::v-deep .u-button {
         margin-bottom: 20rpx;
       }
   
-      /deep/ .u-form-item {
+      ::v-deep .u-form-item {
         &.tip {
           .u-input {
             width: 100%;
