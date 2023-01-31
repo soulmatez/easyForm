@@ -1,9 +1,11 @@
 import vue from 'rollup-plugin-vue'
+import commonjs from 'rollup-plugin-commonjs'
+import autoprefixer from 'autoprefixer'
 import postcss from 'rollup-plugin-postcss';
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
+import json from '@rollup/plugin-json';
 
 export default {
     input: 'index.js',
@@ -30,6 +32,7 @@ export default {
     }],
     plugins: [
         vue(),
+        json(),
         babel({
             presets: [['@babel/preset-env', {
                 targets: {
@@ -38,11 +41,13 @@ export default {
             }]],
         }), // {exclude: 'node_modules/**'}
         nodeResolve(),
-        postcss(),
+        postcss({
+            plugins: [autoprefixer()]
+        }),
         commonjs({
             include: /node_modules/
         }),
         terser()
     ],
-    // external: ['vue', 'dayjs']
+    external: ['vue', 'dayjs', 'uview-ui']
 }

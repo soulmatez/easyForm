@@ -310,7 +310,7 @@ export default {
       this.elCodingExcelNodeText.data.forEach((item, index) => {
         if (item.isValiate) {
           // 初始化表单校验
-          this.$set(rules, item.key, [
+          this.$set(this.rules, item.key, [
             {
               required: true,
               message: `请选择${item.name}`,
@@ -323,7 +323,7 @@ export default {
         }
       });
       // Object.assign(this.addOrderWorkForm, { ...form });
-      Object.assign(this.rules, { ...rules });
+      // Object.assign(this.rules, { ...rules });
     },
     /**
 	 * 设置action选择框的显隐状态
@@ -508,4 +508,9 @@ export default {
 
 <style lang="scss" scope>
   @import "./assets/style.scss";
+  
+</style>
+
+<style lang="scss">
+  
 </style>

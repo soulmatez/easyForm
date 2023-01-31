@@ -1,6 +1,6 @@
 {
   "name": "esayform",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "以uView为UI框架，使用JSON数据搭建表单页面，实现零代码插入自己想要的业务场景，帮助开发者专注于数据逻辑层和业务层",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,11 @@
     "rollup-plugin-babel": "^4.4.0"
   },
   "dependencies": {
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "autoprefixer": "^8.0.0",
     "cssnano": "^5.1.14",
+    "node-sass": "^4.14.1",
     "postcss-pxtorem": "^5.1.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
